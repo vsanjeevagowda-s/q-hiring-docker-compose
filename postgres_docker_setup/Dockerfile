@@ -1,2 +1,3 @@
 FROM postgres:9.5
-ADD . /
+ADD questions.sql /questions.sql
+WORKDIR /

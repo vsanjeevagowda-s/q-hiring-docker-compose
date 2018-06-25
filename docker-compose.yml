@@ -1,7 +1,7 @@
 version: '2'
 services:
   db:
-    build: /home/ubuntu/projects/Q-hiring-abstraction/postgres_docker_config
+    build: postgres_docker_setup
     restart: always
     ports:
       - "5432:5432"
@@ -10,9 +10,9 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
   q-hiring-hapi:
-    build: /home/ubuntu/projects/q-hiring-hapi
+    build: ../q-hiring-hapi
     volumes:
-      - "/home/ubuntu/projects/q-hiring-hapi:/q-hiring-hapi/"
+      - "../q-hiring-hapi:/q-hiring-hapi/"
     ports:
       - "3001:3001"
     links:
@@ -25,9 +25,9 @@ services:
       DB_PASSWORD: password
       DB_HOST: db
   q-hiring-abstraction:
-    build: /home/ubuntu/projects/Q-hiring-abstraction
+    build: ../Q-hiring-abstraction
     volumes:
-      - "/home/ubuntu/projects/Q-hiring-abstraction:/Q-hiring-abstraction/"
+      - "../Q-hiring-abstraction:/Q-hiring-abstraction/"
     ports:
     - "3002:3002"
     links:
@@ -39,3 +39,9 @@ services:
       DB_NAME: postgres
       DB_PASSWORD: password
       DB_HOST: db
+  q-hiring-redux:
+    build: ../q-hiring-redux
+    volumes:
+      - "../q-hiring-redux:/q-hiring-redux/"
+    ports:
+    - "8080:8080"
